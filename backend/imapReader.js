@@ -34,7 +34,9 @@ async function fetchNewsletters() {
             'noreply@mailing.image-line.com',
             'no-reply@news.ableton.com',
             'no-reply@waves.com',
-            'no-reply@email.pluginboutique.com'
+            'newsletter@news.plugin-alliance.com',
+            'hello@email.pluginboutique.com',
+            'news@emails.waves-audio.com'
         ];
 
         const parsedEmails = [];
@@ -56,7 +58,7 @@ async function fetchNewsletters() {
                 const $ = cheerio.load(parsed.html);
                 summary = $('p').first().text().trim();
             } else {
-                summary = parsed.text ? parsed.text.substring(0, 200) : '';
+                summary = parsed.text ? parsed.text.substring(0, 800) : '';
             }
 
             parsedEmails.push({
@@ -64,6 +66,7 @@ async function fetchNewsletters() {
                 from: parsed.from?.text || '(Expéditeur inconnu)',
                 date: parsed.date || new Date(),
                 summary,
+                fullHtml: parsed.html || null,
                 link: null,
             });
         }
