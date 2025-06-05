@@ -1,50 +1,125 @@
-Vulanerability : 
+# 📩 NewsletterCheckApp
 
-Severity: high
-semver vulnerable to Regular Expression Denial of Service - https://github.com/advisories/GHSA-c2qf-rxjj-qqgw
-fix available via npm audit fix --force
-Will install imap-simple@1.6.3, which is a breaking change
-node_modules/semver
-  utf7  >=1.0.2
-  Depends on vulnerable versions of semver
-  node_modules/utf7
-    imap  >=0.8.18
-    Depends on vulnerable versions of utf7
-    node_modules/imap
-      imap-simple  >=2.0.0
-      Depends on vulnerable versions of imap
-      node_modules/imap-simple
+Une application (web/mobile) qui récupère automatiquement les newsletters de votre boîte mail et les affiche dans un fil d’actualité lisible et épuré.
 
+## 🚀 Objectif
 
-       Solution 1 – Corriger automatiquement (⚠️ peut casser)
+Permettre à n'importe qui de :
 
-       Solution 2 – Continuer avec les vulnérabilités (pour dev local uniquement)
+- Télécharger l'app
+- Entrer son adresse email (Gmail uniquement pour l’instant)
+- Visualiser automatiquement toutes ses newsletters dans un **fil déroulant**, comme un agrégateur de contenu personnel
 
-       Solution 3 – Remplacer imap-simple par node-imap directement
+## 🧠 Fonctionnement
 
+1. Connexion sécurisée à la boîte mail via IMAP (Gmail)
+2. Filtrage des messages provenant de newsletters spécifiques
+3. Parsing des emails au format HTML
+4. Affichage dans une interface React (web ou mobile avec React Native prochainement)
 
+## 📦 Structure du projet
 
-Meilleur filtre : 
+```
+.
+├── backend/                # API Node.js
+│   ├── app.js             # Serveur Express
+│   ├── imapReader.js      # Lecture et parsing des emails via IMAP
+│   └── config.js          # Stockage sécurisé du mot de passe d'app
+└── frontend/              # Interface React
+    ├── App.jsx            # Composant principal
+    ├── components/        # (À venir) Composants UI
+    └── styles/            # Styles modulaires
+```
 
+## ⚙️ Prérequis
 
-possibilité dajouter les mail en entier comme ceci avec imap : 
+### 1. Un compte Gmail avec l'IMAP activé
 
+- [Activer l'IMAP Gmail](https://mail.google.com/mail/u/0/#settings/fwdandpop)
+- Générer un **mot de passe d'application** via [https://myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
 
-const searchCriteria = [
-  'ALL',
-  ['OR',
-    ['FROM', 'a@domaine1.com'],
-    ['OR',
-      ['FROM', 'b@domaine2.com'],
-      ['OR',
-        ['FROM', 'c@domaine3.com'],
-        ['OR',
-          ['FROM', 'd@domaine4.com'],
-          ['FROM', 'e@domaine5.com']
-        ]
-      ]
-    ]
-  ]
-];
+### 2. Node.js et npm installés
 
+## 🔧 Installation
 
+### 1. Cloner le repo
+
+```bash
+git clone https://github.com/ton-pseudo/NewsletterCheckApp.git
+cd NewsletterCheckApp
+```
+
+### 2. Backend
+
+```bash
+cd backend
+npm install
+```
+
+Créer un fichier `config.js` avec votre mot de passe d'application Gmail :
+
+```js
+// config.js
+module.exports = {
+  appMdp: 'TON_MOT_DE_PASSE_APP_GMAIL'
+};
+```
+
+Lancer le serveur :
+
+```bash
+node app.js
+```
+
+### 3. Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Accéder à l'application : [http://localhost:5173](http://localhost:5173)
+
+## ✅ Fonctionnalités en place
+
+- [x] Connexion à Gmail via IMAP
+- [x] Récupération et parsing des emails HTML
+- [x] Filtrage par expéditeurs spécifiques
+- [x] Affichage dans un feed React
+- [x] Support du HTML complet (webview intégrée)
+- [x] Sécurité avec DOMPurify
+- [ ] Interface mobile (à venir via React Native ou Expo)
+
+## ✉️ Expéditeurs pris en charge
+
+- `noreply@mailing.image-line.com`
+- `no-reply@news.ableton.com`
+- `no-reply@waves.com`
+- `newsletter@news.plugin-alliance.com`
+- `hello@email.pluginboutique.com`
+- `no-reply@email.pluginboutique.com`
+- `news@emails.waves-audio.com`
+
+## 🧱 Stack utilisée
+
+- **Backend** : Node.js, Express, imap-simple, mailparser, cheerio
+- **Frontend** : React (Vite), DOMPurify
+- **IMAP** : Gmail
+- **À venir** : React Native / Expo pour version mobile
+
+## 📌 Prochaines étapes
+
+- [ ] Interface de connexion utilisateur (adresse mail + mot de passe app)
+- [ ] Version mobile (React Native)
+- [ ] Stockage local (SQLite / Realm pour mobile)
+- [ ] Planification automatique (fetch quotidien)
+- [ ] UI/UX épurée avec tri par date / expéditeur
+
+## 💡 Aide
+
+Pour toute question ou idée, contacte-moi sur GitHub ou par email : **newslettercheckapp@gmail.com**
+
+## 📜 Licence
+
+Projet open source sous licence MIT.
