@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import DOMPurify from 'dompurify';
 
 function App() {
   const [newsletters, setNewsletters] = useState([]);
-  const [error, setError] = useState(null);  
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-     console.log('⏳ Appel API lancé...');
+    console.log('⏳ Appel API lancé...');
     fetch('http://localhost:3000/api/newsletters')
       .then((res) => {
         if (!res.ok) {
@@ -16,10 +17,10 @@ function App() {
       .then((data) => {
         console.log('✅ Données reçues :', data);
         setNewsletters(data);
-        setError(null);  
+        setError(null);
       })
       .catch((err) => {
-        setError(err.message);  
+        setError(err.message);
       });
   }, []);
 
@@ -34,7 +35,14 @@ function App() {
             <h2>{nl.subject}</h2>
             <p><strong>De :</strong> {nl.from}</p>
             <p><strong>Date :</strong> {new Date(nl.date).toLocaleString()}</p>
-            <p>{nl.summary}</p>
+            {nl.fullHtml ? (
+              <div
+                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(nl.fullHtml) }}
+                style={{ border: '1px solid #ddd', padding: '1rem', background: '#f9f9f9', marginTop: '1rem' }}
+              />
+            ) : (
+              <p>{nl.summary}</p>
+            )}
           </li>
         ))}
       </ul>
