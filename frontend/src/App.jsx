@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DOMPurify from 'dompurify';
 import './App.css';
+import Navbar from './components/Navbar';
 
 function App() {
   const [newsletters, setNewsletters] = useState([]);
@@ -22,10 +23,9 @@ function App() {
 
   return (
     <>
-      <nav className="navbar">
-        <h1>NewsletterFeed</h1>
-      </nav>
-
+      <>
+        <Navbar />
+      </>
       <div className="app-container">
         {newsletters.length === 0 && <p>Aucune newsletter reçue.</p>}
         {error && <p className="error-message">Erreur : {error}</p>}

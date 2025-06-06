@@ -1,30 +1,34 @@
-/* === APP-SPECIFIC STYLES ONLY === */
-
-/* Base */
 body {
   background-color: var(--french-gray);
   color: var(--feldgrau);
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-  display: flex;
-  justify-content: center;
+  padding: 0;
+  width: 100%;
 }
 
 /* Navbar */
 .navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;            
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: var(--feldgrau);
+  padding: 0.4rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
   color: var(--robin-egg-blue);
-  padding: 1rem 2rem;
-  text-align: center;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 4px rgba(84, 56, 56, 0.1);
+  z-index: 10;
+  box-sizing: border-box;
 }
 
 /* Container */
 .app-container {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
+  padding: 2rem 1rem;        /* padding vertical et horizontal */
+  max-width: 1000px;         /* largeur max */
+  margin: 0 auto;            /* centré horizontalement */
 }
 
 /* Erreur */
@@ -35,6 +39,7 @@ body {
 
 /* Grid */
 .newsletter-grid {
+  width: 100%;               /* prend toute la largeur du container */
   display: grid;
   grid-template-columns: repeat(1, minmax(280px, 1fr));
   gap: 1.5rem;
@@ -46,7 +51,7 @@ body {
   border-left: 5px solid var(--robin-egg-blue);
   color: var(--feldgrau);
   padding: 1rem 1.5rem;
-  border-radius: 10px;
+  border-radius: 60px;
   box-shadow: 0 8px 32px 0 rgba(47, 50, 100, 0.37);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -62,6 +67,7 @@ body {
   font-size: 1.2rem;
   color: var(--feldgrau);
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .card-from,
@@ -76,10 +82,4 @@ body {
   font-size: 1rem;
   color: var(--french-gray);
   margin-top: 1rem;
-}
-
-.card-content {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.5rem;
-  border-radius: 4px;
 }
