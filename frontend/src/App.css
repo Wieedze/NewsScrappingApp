@@ -27,8 +27,13 @@ body {
 /* Container */
 .app-container {
   padding: 2rem 1rem;        /* padding vertical et horizontal */
-  max-width: 1000px;         /* largeur max */
-  margin: 0 auto;            /* centré horizontalement */
+  max-width: 2000px;         /* largeur max */
+  margin: 0 auto;     
+  background-image: url('./assets/fond-de-lumieres-degradees.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;       /* centré horizontalement */
 }
 
 /* Erreur */
@@ -41,21 +46,21 @@ body {
 .newsletter-grid {
   width: 100%;               /* prend toute la largeur du container */
   display: grid;
-  grid-template-columns: repeat(1, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
 /* Card */
 .newsletter-card {
-  background: var(--battleship-gray);
+  background: rgba(168, 168, 168, 0.15); /* Plus translucide */
   border-left: 5px solid var(--robin-egg-blue);
   color: var(--feldgrau);
   padding: 1rem 1.5rem;
   border-radius: 60px;
-  box-shadow: 0 8px 32px 0 rgba(47, 50, 100, 0.37);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid var(--cadet-gray);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* plus lumineux et bleuté */
+  backdrop-filter: blur(15px); /* flou augmenté */
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2); /* bord plus clair et translucide */
   transition: transform 0.2s ease-in-out;
 }
 

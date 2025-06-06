@@ -7,6 +7,7 @@ function App() {
   const [newsletters, setNewsletters] = useState([]);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     fetch('http://localhost:3000/api/newsletters')
       .then((res) => {
