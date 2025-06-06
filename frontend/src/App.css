@@ -1,42 +1,85 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* === APP-SPECIFIC STYLES ONLY === */
+
+/* Base */
+body {
+  background-color: var(--french-gray);
+  color: var(--feldgrau);
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--feldgrau);
+  color: var(--robin-egg-blue);
+  padding: 1rem 2rem;
   text-align: center;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 4px rgba(84, 56, 56, 0.1);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Container */
+.app-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Erreur */
+.error-message {
+  color: red;
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Grid */
+.newsletter-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-.card {
-  padding: 2em;
+/* Card */
+.newsletter-card {
+  background: var(--battleship-gray);
+  border-left: 5px solid var(--robin-egg-blue);
+  color: var(--feldgrau);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px 0 rgba(47, 50, 100, 0.37);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid var(--cadet-gray);
+  transition: transform 0.2s ease-in-out;
 }
 
-.read-the-docs {
-  color: #888;
+.newsletter-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  color: var(--feldgrau);
+  margin-bottom: 0.5rem;
+}
+
+.card-from,
+.card-date {
+  font-size: 0.9rem;
+  color: var(--cadet-gray);
+  margin-bottom: 0.3rem;
+}
+
+.card-summary,
+.card-content {
+  font-size: 1rem;
+  color: var(--french-gray);
+  margin-top: 1rem;
+}
+
+.card-content {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem;
+  border-radius: 4px;
 }
