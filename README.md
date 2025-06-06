@@ -17,26 +17,32 @@ Permettre à n'importe qui de :
 3. Parsing des emails au format HTML
 4. Affichage dans une interface React (web ou mobile avec React Native prochainement)
 
+---
+
 ## 📦 Structure du projet
 
-```
 .
-├── backend/                # API Node.js
-│   ├── app.js             # Serveur Express
-│   ├── imapReader.js      # Lecture et parsing des emails via IMAP
-│   └── config.js          # Stockage sécurisé du mot de passe d'app
-└── frontend/              # Interface React
-    ├── App.jsx            # Composant principal
-    ├── components/        # (À venir) Composants UI
-    └── styles/            # Styles modulaires
-```
+├── backend/ # API Node.js
+│ ├── app.js # Serveur Express
+│ ├── imapReader.js # Lecture et parsing des emails via IMAP
+│ └── config.js # Stockage sécurisé du mot de passe d'app
+└── frontend/ # Interface React
+├── App.jsx # Composant principal
+├── components/ # (À venir) Composants UI
+└── styles/ # Styles modulaires
+
+yaml
+Copier
+Modifier
+
+---
 
 ## ⚙️ Prérequis
 
 ### 1. Un compte Gmail avec l'IMAP activé
-
-- [Activer l'IMAP Gmail](https://mail.google.com/mail/u/0/#settings/fwdandpop)
-- Générer un **mot de passe d'application** via [https://myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+- [Activer l'IMAP](https://mail.google.com/mail/u/0/#settings/fwdandpop)
+- Générer un **mot de passe d'application** (nécessite l'authentification à deux facteurs) via :  
+  [https://myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
 
 ### 2. Node.js et npm installés
 
@@ -47,7 +53,7 @@ Permettre à n'importe qui de :
 ```bash
 git clone https://github.com/ton-pseudo/NewsletterCheckApp.git
 cd NewsletterCheckApp
-```
+
 
 ### 2. Backend
 
@@ -58,12 +64,6 @@ npm install
 
 Créer un fichier `config.js` avec votre mot de passe d'application Gmail :
 
-```js
-// config.js
-module.exports = {
-  appMdp: 'TON_MOT_DE_PASSE_APP_GMAIL'
-};
-```
 
 Lancer le serveur :
 
@@ -91,16 +91,6 @@ Accéder à l'application : [http://localhost:5173](http://localhost:5173)
 - [x] Sécurité avec DOMPurify
 - [ ] Interface mobile (à venir via React Native ou Expo)
 
-## ✉️ Expéditeurs pris en charge
-
-- `noreply@mailing.image-line.com`
-- `no-reply@news.ableton.com`
-- `no-reply@waves.com`
-- `newsletter@news.plugin-alliance.com`
-- `hello@email.pluginboutique.com`
-- `no-reply@email.pluginboutique.com`
-- `news@emails.waves-audio.com`
-
 ## 🧱 Stack utilisée
 
 - **Backend** : Node.js, Express, imap-simple, mailparser, cheerio
@@ -123,3 +113,4 @@ Pour toute question ou idée, contacte-moi sur GitHub ou par email : **newslette
 ## 📜 Licence
 
 Projet open source sous licence MIT.
+

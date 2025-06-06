@@ -36,7 +36,9 @@ async function fetchNewsletters() {
             'no-reply@waves.com',
             'newsletter@news.plugin-alliance.com',
             'hello@email.pluginboutique.com',
-            'news@emails.waves-audio.com'
+            'news@emails.waves-audio.com',
+            'izotope@hello.izotope.com',
+            'newsletter@news.native-instruments.com'
         ];
 
         const parsedEmails = [];
