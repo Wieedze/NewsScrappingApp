@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DOMPurify from 'dompurify';
 import './App.css';
 import Navbar from './components/Navbar';
+import Masonry from 'react-masonry-css';
 
 function App() {
   const [newsletters, setNewsletters] = useState([]);
@@ -23,31 +24,33 @@ function App() {
   }, []);
 
   return (
-    <>
-      <>
-        <Navbar />
-      </>
-      <div className="app-container">
-        {newsletters.length === 0 && <p>Aucune newsletter reçue.</p>}
-        {error && <p className="error-message">Erreur : {error}</p>}
-        <div className="newsletter-grid">
-          {newsletters.map((nl, i) => (
-            <div className="newsletter-card" key={i}>
-              <h2 className="card-title">{nl.subject}</h2>
-              {nl.fullHtml ? (
-                <div
-                  className="card-content"
-                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(nl.fullHtml) }}
-                />
-              ) : (
-                <p className="card-summary">{nl.summary}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  );
+  <>
+    <Navbar />
+    <div className="app-container">
+      {newsletters.length === 0 && <p>Aucune newsletter reçue.</p>}
+      {error && <p className="error-message">Erreur : {error}</p>}
+      <Masonry
+        breakpointCols={{ default: 3, 1100: 2, 700: 1 }}
+        className="newsletter-grid-masonry"
+        columnClassName="newsletter-masonry-column"
+      >
+        {newsletters.map((nl, i) => (
+          <div className="newsletter-card" key={i}>
+            <h2 className="card-title">{nl.subject}</h2>
+            {nl.fullHtml ? (
+              <div
+                className="card-content"
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(nl.fullHtml) }}
+              />
+            ) : (
+              <p className="card-summary">{nl.summary}</p>
+            )}
+          </div>
+        ))}
+      </Masonry>
+    </div>
+  </>
+);
 }
 
 export default App;

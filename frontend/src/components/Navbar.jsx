@@ -8,6 +8,9 @@ export default function Navbar() {
         <a href="#about" className="nav-link">About</a>
         <a href="#contact" className="nav-link">Contact</a>
       </div>
+      <div class="navbar-logo">
+        <img src="/logo.png" alt="Logo" />
+      </div>
       <div className="navbar-right">
         <input type="search" placeholder="Search..." className="search-input" />
       </div>

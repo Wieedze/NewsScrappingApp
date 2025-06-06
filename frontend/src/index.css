@@ -13,6 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   --robin-egg-blue: #52d1dcff;
+  --titlecolor:white;
+  --navbarbackground:black;
+  --navbarfont:rgb(255, 255, 255);
   --feldgrau: #475b5aff;
   --battleship-gray: #8d8e8eff;
   --cadet-gray: #a3a9aaff;
