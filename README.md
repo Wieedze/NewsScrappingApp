@@ -46,8 +46,6 @@ Modifier
 
 ### 2. Node.js et npm installés
 
----
-
 ## 🔧 Installation
 
 ### 1. Cloner le repo
@@ -55,86 +53,64 @@ Modifier
 ```bash
 git clone https://github.com/ton-pseudo/NewsletterCheckApp.git
 cd NewsletterCheckApp
-2. Backend
-bash
-Copier
-Modifier
+
+
+### 2. Backend
+
+```bash
 cd backend
 npm install
-Crée un fichier config.js :
+```
 
-js
-Copier
-Modifier
-// config.js
-module.exports = {
-  appMdp: 'TON_MOT_DE_PASSE_APP_GMAIL'
-};
+Créer un fichier `config.js` avec votre mot de passe d'application Gmail :
+
+
 Lancer le serveur :
 
-bash
-Copier
-Modifier
+```bash
 node app.js
-3. Frontend
-bash
-Copier
-Modifier
+```
+
+### 3. Frontend
+
+```bash
 cd frontend
 npm install
 npm run dev
-Accéder à http://localhost:5173
+```
 
-✅ Fonctionnalités en place
- Connexion à Gmail via IMAP
+Accéder à l'application : [http://localhost:5173](http://localhost:5173)
 
- Récupération et parsing des emails HTML
+## ✅ Fonctionnalités en place
 
- Filtrage par expéditeurs spécifiques
+- [x] Connexion à Gmail via IMAP
+- [x] Récupération et parsing des emails HTML
+- [x] Filtrage par expéditeurs spécifiques
+- [x] Affichage dans un feed React
+- [x] Support du HTML complet (webview intégrée)
+- [x] Sécurité avec DOMPurify
+- [ ] Interface mobile (à venir via React Native ou Expo)
 
- Affichage dans un feed React
+## 🧱 Stack utilisée
 
- Support du HTML complet (webview intégrée)
+- **Backend** : Node.js, Express, imap-simple, mailparser, cheerio
+- **Frontend** : React (Vite), DOMPurify
+- **IMAP** : Gmail
+- **À venir** : React Native / Expo pour version mobile
 
- Sécurité avec DOMPurify
+## 📌 Prochaines étapes
 
- Interface mobile (à venir via React Native ou Expo)
+- [ ] Interface de connexion utilisateur (adresse mail + mot de passe app)
+- [ ] Version mobile (React Native)
+- [ ] Stockage local (SQLite / Realm pour mobile)
+- [ ] Planification automatique (fetch quotidien)
+- [ ] UI/UX épurée avec tri par date / expéditeur
 
-✨ Exemples d’expéditeurs pris en charge
-no-reply@news.ableton.com
+## 💡 Aide
 
-noreply@mailing.image-line.com
+Pour toute question ou idée, contacte-moi sur GitHub ou par email : **newslettercheckapp@gmail.com**
 
-newsletter@news.plugin-alliance.com
+## 📜 Licence
 
-hello@email.pluginboutique.com
-
-no-reply@waves.com
-
-(personnalisable dans le backend)
-
-🧱 Stack utilisée
-Backend : Node.js, Express, imap-simple, mailparser, cheerio
-
-Frontend : React (Vite), DOMPurify
-
-IMAP : Gmail
-
-À venir : React Native / Expo pour version mobile
-
-📌 Prochaines étapes
- Interface de connexion utilisateur (adresse mail + mot de passe app)
-
- Version mobile (React Native)
-
- Stockage local (SQLite / Realm pour mobile)
-
- Planification automatique (fetch quotidien)
-
- UI/UX épurée avec tri par date / expéditeur
-
-💡 Aide
-Pour toute question, contacte-moi sur GitHub ou par email : newslettercheckapp@gmail.com
-
-📜 Licence
 Projet open source sous licence MIT.
+
