@@ -1,30 +1,117 @@
-/* === APP-SPECIFIC STYLES ONLY === */
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap');
 
-/* Base */
 body {
-  background-color: var(--french-gray);
   color: var(--feldgrau);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Antonio', sans-serif;
   margin: 0;
-  display: flex;
-  justify-content: center;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  background-image: url('./assets/fond-de-lumieres-degradees.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
 }
 
 /* Navbar */
 .navbar {
-  background-color: var(--feldgrau);
-  color: var(--robin-egg-blue);
-  padding: 1rem 2rem;
-  text-align: center;
-  font-size: 1.5rem;
-  box-shadow: 0 2px 4px rgba(84, 56, 56, 0.1);
+  position: sticky;
+  top: 0;
+  width: 100%;            
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(0, 0, 0);
+  padding: 0.7rem 2rem;
+  box-shadow: 0 3px 16px rgba(40, 0, 100, 0.08);
+  font-size: 1.1rem;
+  color: #fff;
+  z-index: 10;
+  box-sizing: border-box;
+
 }
 
+.navbar-left, 
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-logo img {
+  height: 70px;
+  max-width: 240px;
+  object-fit: contain;
+}
+
+.navbar-logo {
+  flex: 1 0 auto;        /* Le logo prend de la place pour être au centre */
+  display: flex;
+  justify-content: center;
+}
+
+/* Liens espacés et animés */
+.navbar nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: color 0.2s, background 0.2s, border-radius 0.2s;
+  padding: 0.4em 0.8em;
+  border-radius: 8px;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  color: #ffe477;
+}
+
+/* Champ de recherche design */
+.navbar input[type="text"] {
+  padding: 0.35em 1em;
+  border-radius: 8px;
+  border: none;
+  font-size: 1em;
+  
+  box-shadow: 0 1px 5px rgba(50,50,80,0.1);
+  outline: none;
+  transition: box-shadow 0.2s;
+  min-width: 130px;
+}
+
+.navbar input[type="text"]:focus {
+  box-shadow: 0 0 8px 1px #a46ad7;
+  border: 1px solid #a46ad7;
+}
 /* Container */
 .app-container {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
+  padding: 2rem 4rem;        
+  max-width: 2000px;         
+  margin: 0 auto;     
+  background: transparent;    
 }
 
 /* Erreur */
@@ -35,23 +122,39 @@ body {
 
 /* Grid */
 .newsletter-grid {
+  width: 100%;  
   display: grid;
-  grid-template-columns: repeat(1, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
   gap: 1.5rem;
+}
+
+.newsletter-grid-masonry {
+  display: flex;
+  margin-left: -15px; /* gap compensation */
+  width: auto;
+}
+
+.newsletter-masonry-column {
+  padding-left: 15px;
+  background-clip: padding-box;
 }
 
 /* Card */
 .newsletter-card {
-  background: var(--battleship-gray);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255, 255, 255, 0.068); /* Plus translucide */
   border-left: 5px solid var(--robin-egg-blue);
   color: var(--feldgrau);
   padding: 1rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 8px 32px 0 rgba(47, 50, 100, 0.37);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid var(--cadet-gray);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.534); /* plus lumineux et bleuté */
+  backdrop-filter: blur(5px); /* flou augmenté */
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2); /* bord plus clair et translucide */
   transition: transform 0.2s ease-in-out;
+  
 }
 
 .newsletter-card:hover {
@@ -59,9 +162,10 @@ body {
 }
 
 .card-title {
-  font-size: 1.2rem;
-  color: var(--feldgrau);
+  font-size: 2rem;
+  color: var(--titlecolor);
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .card-from,
@@ -74,12 +178,34 @@ body {
 .card-summary,
 .card-content {
   font-size: 1rem;
+  border-radius: 10px;
   color: var(--french-gray);
   margin-top: 1rem;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  word-break: break-word;
+  overflow: hidden;
 }
 
-.card-content {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.5rem;
-  border-radius: 4px;
+
+.card-content img, .newsletter-card img {
+  max-width: 100%;
+  
+  height: auto;
+  display: block;
+  object-fit: contain;
+  box-sizing: border-box;
 }
+
+.card-content * {
+  box-sizing: border-box;
+  max-width: 100% !important;
+}
+
+.search-input {
+    border-radius: 10px;
+    box-shadow: 10px;
+    height: 30px;
+    width: 250px;
+}
+

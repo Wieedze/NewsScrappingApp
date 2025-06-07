@@ -1,0 +1,101 @@
+/* Navbar.css */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;            
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(0, 0, 0);
+  padding: 0.7rem 2rem;
+  box-shadow: 0 3px 16px rgba(40, 0, 100, 0.08);
+  font-size: 1.1rem;
+  color: #fff;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.navbar-left, 
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-logo img {
+  height: 70px;
+  max-width: 240px;
+  object-fit: contain;
+}
+
+.navbar-logo {
+  flex: 1 0 auto;        /* Le logo prend de la place pour être au centre */
+  display: flex;
+  justify-content: center;
+}
+
+/* Liens espacés et animés */
+.navbar nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: color 0.2s, background 0.2s, border-radius 0.2s;
+  padding: 0.4em 0.8em;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #ffffff;
+}
+
+/* Champ de recherche design */
+.search-input {
+  padding: 0.35em 1em;
+  border-radius: 8px;
+  border: none;
+  font-size: 1em;
+  box-shadow: 0 1px 5px rgba(50,50,80,0.1);
+  outline: none;
+  transition: box-shadow 0.2s;
+  min-width: 130px;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 8px 1px #a46ad7;
+  border: 1px solid #a46ad7;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute; /* menu qui se superpose */
+  top: 95px; /* en dessous de la navbar */
+  left: 0px; /* aligné avec le lien constructor */
+  background-color: rgb(0, 0, 0);
+  border-radius: 4px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 15px;
+  color: #ffffff8e;
+  text-decoration: none;
+  cursor: pointer; /* corrigé 'pointe' vers 'pointer' */
+}
+
+.dropdown-item:hover {
+  background-color: #D69F7E;
+  color: white;
+}
