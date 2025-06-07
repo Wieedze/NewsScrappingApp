@@ -10,21 +10,39 @@ const config = {
         host: 'imap.gmail.com',
         port: 993,
         tls: true,
-        authTimeout: 10000,
-        tlsOptions: { rejectUnauthorized: false }
+        authTimeout: 20000,
+        tlsOptions: { rejectUnauthorized: false },
     },
 };
 
-async function fetchNewsletters() {
+// 🔍 Fonction pour détecter les mots-clés dans le HTML ou le texte
+function detectKeywords(content) {
+    const text = content.toLowerCase();
+    const keywords = [];
 
+    const effectWords = ['fx', 'eq', 'compressor', 'multi-band', 'delay', 'reverb', 'mix', 'mastering'];
+    const instrumentWords = ['vst', 'oscillator', 'envelope', 'filter'];
+
+    if (effectWords.some(word => text.includes(word))) {
+        keywords.push('effect');
+    }
+
+    if (instrumentWords.some(word => text.includes(word))) {
+        keywords.push('instrument');
+    }
+    console.log('📌 Tags détectés pour', ':', keywords);
+
+    return keywords;
+}
+
+async function fetchNewsletters() {
     console.log('📩 Début fetchNewsletters');
+
     try {
         const connection = await imaps.connect(config);
         await connection.openBox('INBOX');
 
-        // On prend tous les mails pour filtrer ensuite en JS
         const searchCriteria = ['ALL'];
-
         const fetchOptions = { bodies: [''], markSeen: false };
         const messages = await connection.search(searchCriteria, fetchOptions);
 
@@ -38,7 +56,8 @@ async function fetchNewsletters() {
             'hello@email.pluginboutique.com',
             'news@emails.waves-audio.com',
             'izotope@hello.izotope.com',
-            'newsletter@news.native-instruments.com'
+            'newsletter@news.native-instruments.com',
+            'info@news.steinberg.net',
         ];
 
         const parsedEmails = [];
@@ -47,20 +66,21 @@ async function fetchNewsletters() {
             const all = item.parts.find(part => part.which === '');
             const parsed = await simpleParser(all.body);
 
-            // Filtrer par expéditeur exact
-            if (!parsed.from?.value.some(sender =>
+            const isAllowed = parsed.from?.value.some(sender =>
                 allowedSenders.includes(sender.address.toLowerCase())
-            )) {
-                continue; // ignorer les mails hors liste
-            }
+            );
+            if (!isAllowed) continue;
 
             let summary = '';
+            let tags = [];
 
             if (parsed.html) {
                 const $ = cheerio.load(parsed.html);
                 summary = $('p').first().text().trim();
-            } else {
-                summary = parsed.text ? parsed.text.substring(0, 800) : '';
+                tags = detectKeywords($.text());
+            } else if (parsed.text) {
+                summary = parsed.text.substring(0, 800);
+                tags = detectKeywords(parsed.text);
             }
 
             parsedEmails.push({
@@ -70,6 +90,7 @@ async function fetchNewsletters() {
                 summary,
                 fullHtml: parsed.html || null,
                 link: null,
+                tags,
             });
         }
 
@@ -77,7 +98,7 @@ async function fetchNewsletters() {
         console.log('✅ Fin fetchNewsletters, emails parsés :', parsedEmails.length);
         return parsedEmails;
     } catch (err) {
-        console.error('Erreur dans fetchNewsletters:', err);
+        console.error('❌ Erreur dans fetchNewsletters:', err);
         throw err;
     }
 }

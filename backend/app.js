@@ -22,8 +22,25 @@ let cachedNewsletters = []; // 🧠 stockage temporaire en mémoire
 
 // Quand le front appelle /api/newsletters, on renvoie ce qu’on a déjà
 app.get('/api/newsletters', (req, res) => {
-  res.json(cachedNewsletters);
+  const query = (req.query.q || '').toLowerCase();
+
+  if (!query) {
+    // Si pas de query, on renvoie tout
+    return res.json(cachedNewsletters);
+  }
+
+  // Filtrer selon sujet, résumé, ou tags
+  const filtered = cachedNewsletters.filter(mail => {
+    return (
+      mail.subject.toLowerCase().includes(query) ||
+      mail.summary.toLowerCase().includes(query) ||
+      mail.tags.some(tag => tag.includes(query))
+    );
+  });
+
+  res.json(filtered);
 });
+
 
 app.listen(port, () => {
   console.log(`✅ API serveur démarré sur http://localhost:${port}`);

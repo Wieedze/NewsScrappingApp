@@ -201,3 +201,11 @@ body::before {
   box-sizing: border-box;
   max-width: 100% !important;
 }
+
+.search-input {
+    border-radius: 10px;
+    box-shadow: 10px;
+    height: 30px;
+    width: 250px;
+}
+
